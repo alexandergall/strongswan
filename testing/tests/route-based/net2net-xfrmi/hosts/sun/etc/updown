@@ -1,0 +1,21 @@
+#!/bin/bash
+
+IF_NAME="xfrm-${PLUTO_UNIQUEID}"
+
+case "${PLUTO_VERB}" in
+    up-client)
+        /usr/local/libexec/ipsec/xfrmi -n "${IF_NAME}-out" -i "${PLUTO_IF_ID_OUT}" -d eth0
+        /usr/local/libexec/ipsec/xfrmi -n "${IF_NAME}-in" -i "${PLUTO_IF_ID_IN}" -d eth0
+        ip link set "${IF_NAME}-out" up
+        ip link set "${IF_NAME}-in" up
+        ip route add 10.1.0.0/16 dev "${IF_NAME}-out"
+        iptables -A FORWARD -o "${IF_NAME}-out" -j ACCEPT
+        iptables -A FORWARD -i "${IF_NAME}-in" -j ACCEPT
+        ;;
+    down-client)
+        iptables -D FORWARD -o "${IF_NAME}-out" -j ACCEPT
+        iptables -D FORWARD -i "${IF_NAME}-in" -j ACCEPT
+        ip link del "${IF_NAME}-out"
+        ip link del "${IF_NAME}-in"
+        ;;
+esac
