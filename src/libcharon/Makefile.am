@@ -600,6 +600,13 @@ if MONOLITHIC
 endif
 endif
 
+if USE_KERNEL_SNABB
+  SUBDIRS += plugins/kernel_snabb
+if MONOLITHIC
+  libcharon_la_LIBADD += plugins/kernel_snabb/libstrongswan-kernel-snabb.la
+endif
+endif
+
 if USE_WHITELIST
   SUBDIRS += plugins/whitelist
 if MONOLITHIC

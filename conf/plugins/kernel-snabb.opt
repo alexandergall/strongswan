@@ -1,0 +1,6 @@
+charon.plugins.kernel-snabb.shm_path := /var/run/snabb/ipsec
+        The path of the directory where the backing file for the shmem segment
+        used to store SA information for the Snabb pseudo-kernel is located.
+
+charon.plugins.kernel-snabb.shm_suffix := .ipsec_sa
+        The suffix to add to the names of the shmem files.

@@ -218,6 +218,7 @@ ARG_ENABL_SET([kernel-pfroute], [enable the PF_ROUTE kernel interface.])
 ARG_ENABL_SET([kernel-iph],     [enable the Windows IP Helper based networking backend.])
 ARG_ENABL_SET([kernel-libipsec],[enable the libipsec kernel interface.])
 ARG_ENABL_SET([kernel-wfp],     [enable the Windows Filtering Platform IPsec backend.])
+ARG_ENABL_SET([kernel-snabb],   [enable the Snabb pseudo-kernel interface.])
 ARG_DISBL_SET([socket-default], [disable default socket implementation for charon.])
 ARG_ENABL_SET([socket-dynamic], [enable dynamic socket implementation for charon])
 ARG_ENABL_SET([socket-win],     [enable Winsock2 based socket implementation for charon])
@@ -1435,6 +1436,7 @@ ADD_PLUGIN([kernel-iph],           [c charon])
 ADD_PLUGIN([kernel-pfkey],         [c charon starter nm cmd])
 ADD_PLUGIN([kernel-pfroute],       [c charon starter nm cmd])
 ADD_PLUGIN([kernel-netlink],       [c charon starter nm cmd])
+ADD_PLUGIN([kernel-snabb],         [c charon])
 ADD_PLUGIN([resolve],              [c charon cmd])
 ADD_PLUGIN([save-keys],            [c])
 ADD_PLUGIN([socket-default],       [c charon nm cmd])
@@ -1611,6 +1613,7 @@ AM_CONDITIONAL(USE_KERNEL_PFROUTE, test x$kernel_pfroute = xtrue)
 AM_CONDITIONAL(USE_KERNEL_LIBIPSEC, test x$kernel_libipsec = xtrue)
 AM_CONDITIONAL(USE_KERNEL_WFP, test x$kernel_wfp = xtrue)
 AM_CONDITIONAL(USE_KERNEL_IPH, test x$kernel_iph = xtrue)
+AM_CONDITIONAL(USE_KERNEL_SNABB, test x$kernel_snabb = xtrue)
 AM_CONDITIONAL(USE_WHITELIST, test x$whitelist = xtrue)
 AM_CONDITIONAL(USE_EXT_AUTH, test x$ext_auth = xtrue)
 AM_CONDITIONAL(USE_LOOKIP, test x$lookip = xtrue)
@@ -1957,6 +1960,7 @@ AC_CONFIG_FILES([
 	src/libcharon/plugins/kernel_libipsec/Makefile
 	src/libcharon/plugins/kernel_wfp/Makefile
 	src/libcharon/plugins/kernel_iph/Makefile
+	src/libcharon/plugins/kernel_snabb/Makefile
 	src/libcharon/plugins/whitelist/Makefile
 	src/libcharon/plugins/ext_auth/Makefile
 	src/libcharon/plugins/lookip/Makefile
